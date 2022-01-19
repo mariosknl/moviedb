@@ -1,10 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import MovieCard from "./MovieCard";
 
 // import { getMovies } from "../services/axios";
 
-const baseUrl = `https://api.themoviedb.org/3/movie/550?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}`;
+const baseUrl = `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}`;
+const queryUrl =
+  "https://api.themoviedb.org/3/search/movie?api_key={api_key}&query=";
 
 function Homepage() {
   const [movies, setMovies] = useState([]);
@@ -28,7 +31,6 @@ function Homepage() {
   };
   useEffect(() => {
     getMovies();
-    console.log(movies);
   }, []);
   return (
     <div className="w-full h-full mx-auto">
@@ -40,16 +42,16 @@ function Homepage() {
         />
         <input type="submit" />
       </form>
-      <div>
-        {/* {movies &&
-          movies.map((movie) => {
-            return (
-              <div key={movie.id}>
-                <p>{movie.title}</p>
-              </div>
-            );
-          })} */}
-      </div>
+      {movies &&
+        movies.results.map((movie) => {
+          return (
+            <MovieCard
+              id={movie.id}
+              original_title={movie.original_title}
+              overview={movie.overview}
+            />
+          );
+        })}
     </div>
   );
 }
