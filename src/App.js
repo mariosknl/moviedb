@@ -1,9 +1,8 @@
+import { Link } from "react-router-dom";
+import Homepage from "./components/Homepage";
+
 function App() {
-  return (
-    <div className="App">
-      <h1 className="text-3xl font-bold">Hello world!</h1>
-    </div>
-  );
+  return <Homepage />;
 }
 
 export default App;
