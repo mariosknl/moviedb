@@ -1,11 +1,10 @@
 import axios from "axios";
 
-const baseUrl = `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}`;
-
-export const getMovies = (setMovies) => {
+export const getMovie = (inputValue, setMovie) => {
+  const baseUrl = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&query=${inputValue}`;
+  if (!inputValue) return;
   axios.get(baseUrl).then(({ data }) => {
-    console.log(data);
-    setMovies(data);
+    setMovie(data);
   });
 };
 

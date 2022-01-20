@@ -3,35 +3,26 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import MovieCard from "./MovieCard";
 
-import { getMovies, getSearchMovie } from "../services/axios";
-
-// const queryUrl =
-//   `https://api.themoviedb.org/3/search/movie?api_key={api_key}&query=${inputValue}`;
+import { getMovie, getSearchMovie } from "../services/axios";
 
 function Homepage() {
-  const [movies, setMovies] = useState(null);
-  const [searchMovies, setSearchMovies] = useState("");
+  const [movie, setMovie] = useState("");
   const {
     register,
     handleSubmit,
-    watch,
     getValues,
     formState: { errors },
   } = useForm();
-
   const inputValue = getValues("searchInput");
 
   const onSubmit = (data) => {
-    const inputValue = data;
-    console.log(inputValue);
+    console.log(data);
   };
-  useEffect(() => {
-    getMovies(setMovies);
-  }, []);
 
   useEffect(() => {
-    getSearchMovie(inputValue, setSearchMovies);
-  }, []);
+    getMovie(inputValue, setMovie);
+  }, [inputValue]);
+
   return (
     <>
       <div>
@@ -42,13 +33,14 @@ function Homepage() {
           <input
             {...register("searchInput")}
             placeholder="Search for your desired movie..."
+            defaultValue=""
           />
           <input type="submit" />
         </form>
       </div>
       <div className="grid grid-rows-3 gap-3">
-        {movies &&
-          movies.results.map((movie) => {
+        {movie &&
+          movie?.results.map((movie) => {
             return (
               <div key={movie.id} className="my-10 bg-gray-200">
                 <MovieCard
