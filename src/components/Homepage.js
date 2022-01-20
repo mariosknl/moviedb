@@ -1,12 +1,18 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import MovieCard from "./MovieCard";
-
+// import MovieCard from "./MovieCard";
+import { motion } from "framer-motion";
 import { getMovie, getSearchMovie } from "../services/axios";
+import {
+  containerVariants,
+  childVariants,
+  childVariants2,
+} from "../components/MovieCard";
 
 function Homepage() {
   const [movie, setMovie] = useState("");
+  console.log(movie);
   const {
     register,
     handleSubmit,
@@ -39,18 +45,18 @@ function Homepage() {
         </form>
       </div>
       <div className="grid grid-rows-3 gap-3">
-        {movie &&
-          movie?.results.map((movie) => {
-            return (
-              <div key={movie.id} className="my-10 bg-gray-200">
-                <MovieCard
-                  id={movie.id}
-                  original_title={movie.original_title}
-                  overview={movie.overview}
-                />
-              </div>
-            );
-          })}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <motion.div variants={childVariants} className="my-10 bg-gray-200">
+            <p>Hello</p>
+          </motion.div>
+          <motion.div variants={childVariants2} className="my-10 bg-gray-200">
+            <p>there</p>
+          </motion.div>
+        </motion.div>
       </div>
     </>
   );
