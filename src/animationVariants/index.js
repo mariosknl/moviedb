@@ -18,20 +18,35 @@ export const childVariants = {
   hidden: {
     x: "100vw",
     opacity: 0,
+    y: "5vh",
   },
   visible: {
-    x: "50%",
+    y: "5vh",
+    x: "20vw",
     opacity: 1,
+  },
+};
+
+export const summaryVariants = {
+  hidden: {
+    x: "20vw",
+    opacity: 0,
+    y: "-25vh",
+  },
+  visible: {
+    x: "20vw",
+    opacity: 1,
+    y: "-25vh",
   },
 };
 
 export const imgVariants = {
   hidden: {
-    x: "-30%",
     opacity: 0,
+    x: "10%",
   },
   visible: {
-    x: "-30%",
     opacity: 1,
+    x: "10%",
   },
 };

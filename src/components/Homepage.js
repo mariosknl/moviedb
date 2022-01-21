@@ -10,6 +10,7 @@ import {
   childVariants2,
   imgVariants,
 } from "../animationVariants";
+import MovieCard from "./MovieCard";
 
 function Homepage() {
   const [movie, setMovie] = useState("");
@@ -31,6 +32,7 @@ function Homepage() {
   }, [inputValue]);
 
   const { results } = movie;
+  console.log(results);
 
   const onComplete = () => {
     setPulseEffect(true);
@@ -38,17 +40,20 @@ function Homepage() {
 
   return (
     <>
-      <div>
-        <h1 className="font-bold mx-auto text-center w-[80%]">
+      <div className="flex items-center flex-col">
+        <h1 className="font-bold text-center w-[80%] mx-auto">
           Welcome to the MovieDb
         </h1>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="bg-yellow-200 w-[50%] text-center"
+        >
           <input
             {...register("searchInput")}
             placeholder="Search for your desired movie..."
-            defaultValue=""
+            className="w-[80%] p-2"
           />
-          <input type="submit" />
+          <input type="submit" className="p-2 border w-[20%]" />
         </form>
       </div>
       <div>
@@ -58,42 +63,21 @@ function Homepage() {
             initial="hidden"
             animate="visible"
             onAnimationComplete={() => onComplete()}
+            className="w-[50%] mx-auto"
           >
-            {results.map(({ title, poster_path, id, release_date }) => {
-              return (
-                <div key={id} className="grid grid-rows-3 grid-flow-col gap-4">
-                  <motion.p
-                    variants={childVariants}
-                    className="col-span-2 bg-gray-700"
-                  >
-                    {title}
-                  </motion.p>
-                  <motion.div
-                    variants={imgVariants}
-                    className="row-span-3 bg-yellow-500 w-full"
-                  >
-                    <img
-                      src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
-                      alt=""
-                      className="w-[25%]"
-                    />
-                  </motion.div>
-                  <motion.p
-                    className="text-white row-span-2 col-span-2 bg-red-400"
-                    animate={{
-                      textShadow: "0px 0px 10px rgb(0,0,0)",
-                      boxShadown: "0px 0px 10px rgb(0,0,0)",
-                      transition: {
-                        duration: 1.5,
-                        repeat: Infinity,
-                      },
-                    }}
-                  >
-                    {pulseEffect && release_date}
-                  </motion.p>
-                </div>
-              );
-            })}
+            {results.map(
+              ({ title, poster_path, overview, id, release_date }) => (
+                <MovieCard
+                  title={title}
+                  overview={overview}
+                  poster_path={poster_path}
+                  key={id}
+                  release_date={release_date}
+                  pulseEffect={pulseEffect}
+                />
+              )
+            )}
+            )
           </motion.div>
         )}
       </div>
