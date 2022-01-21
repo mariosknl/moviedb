@@ -1,24 +1,26 @@
 import { motion } from "framer-motion";
 
 export const containerVariants = {
-  initial: {
+  hidden: {
+    translateX: 100,
     opacity: 0,
-    translateX: "100vw",
   },
-  animate: {
-    opacity: 1,
+  visible: {
     translateX: 0,
-  },
-  transition: {
-    duration: 1,
-    delay: 1.5,
-    staggerChildren: 0.5,
+    opacity: 1,
+    transition: {
+      type: "string",
+      mass: 0.6,
+      damping: 8,
+      when: "beforeChildren",
+      staggerChildren: 1,
+    },
   },
 };
 
 export const childVariants = {
-  hidden: { x: "100vw", opacity: 0 },
-  visible: { x: 0, opacity: 1 },
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 },
 };
 
 export const childVariants2 = {

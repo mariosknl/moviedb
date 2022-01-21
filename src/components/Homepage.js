@@ -48,21 +48,17 @@ function Homepage() {
           movie.results.map(({ title, id, backdrop_path }, i) => (
             <motion.div
               key={id}
-              initial={{
-                opacity: 0,
-                translateX: "100vw",
-              }}
-              animate={{
-                opacity: 1,
-                translateX: 0,
-              }}
-              transition={{ duration: 1, delay: i * 0.5 }}
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
             >
-              <p>{title}</p>
-              <img
-                src={`https://image.tmdb.org/t/p/w500/${backdrop_path}`}
-                alt=""
-              />
+              <motion.p variants={childVariants}>{title}</motion.p>
+              <motion.div variants={childVariants}>
+                <img
+                  src={`https://image.tmdb.org/t/p/w500/${backdrop_path}`}
+                  alt=""
+                />
+              </motion.div>
             </motion.div>
           ))}
       </div>
