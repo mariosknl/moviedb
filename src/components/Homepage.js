@@ -68,7 +68,19 @@ function Homepage() {
                       alt=""
                     />
                   </motion.div>
-                  <p>{pulseEffect && release_date}</p>
+                  <motion.p
+                    className="text-white"
+                    animate={{
+                      textShadow: "0px 0px 10px rgb(0,0,0)",
+                      boxShadown: "0px 0px 10px rgb(0,0,0)",
+                      transition: {
+                        duration: 1.5,
+                        yoyo: Infinity,
+                      },
+                    }}
+                  >
+                    {pulseEffect && release_date}
+                  </motion.p>
                 </div>
               );
             })}
