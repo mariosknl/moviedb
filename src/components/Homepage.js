@@ -47,31 +47,27 @@ function Homepage() {
         </form>
       </div>
       <div className="grid grid-rows-3 gap-3">
-        <>
-          {movie && (
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-            >
-              {results.map(({ title, backdrop_path, id }) => {
-                return (
-                  <>
-                    <motion.p key={id} variants={childVariants}>
-                      {title}
-                    </motion.p>
-                    <motion.div variants={childVariants}>
-                      <img
-                        src={`https://image.tmdb.org/t/p/w500/${backdrop_path}`}
-                        alt=""
-                      />
-                    </motion.div>
-                  </>
-                );
-              })}
-            </motion.div>
-          )}
-        </>
+        {movie && (
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            {results.map(({ title, poster_path, id }) => {
+              return (
+                <div key={id}>
+                  <motion.p variants={childVariants}>{title}</motion.p>
+                  <motion.div variants={childVariants}>
+                    <img
+                      src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+                      alt=""
+                    />
+                  </motion.div>
+                </div>
+              );
+            })}
+          </motion.div>
+        )}
       </div>
     </>
   );
