@@ -12,6 +12,7 @@ import {
 
 function Homepage() {
   const [movie, setMovie] = useState("");
+  const [pulseEffect, setPulseEffect] = useState(false);
   const {
     register,
     handleSubmit,
@@ -29,7 +30,10 @@ function Homepage() {
   }, [inputValue]);
 
   const { results } = movie;
-  console.log(results);
+
+  const onComplete = () => {
+    setPulseEffect(true);
+  };
 
   return (
     <>
@@ -52,8 +56,9 @@ function Homepage() {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
+            onAnimationComplete={() => onComplete()}
           >
-            {results.map(({ title, poster_path, id }) => {
+            {results.map(({ title, poster_path, id, release_date }) => {
               return (
                 <div key={id}>
                   <motion.p variants={childVariants}>{title}</motion.p>
@@ -63,6 +68,7 @@ function Homepage() {
                       alt=""
                     />
                   </motion.div>
+                  <p>{pulseEffect && release_date}</p>
                 </div>
               );
             })}
