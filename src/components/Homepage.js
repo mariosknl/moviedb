@@ -1,15 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-// import MovieCard from "./MovieCard";
 import { motion } from "framer-motion";
-import { getMovie, getSearchMovie } from "../services/axios";
-import {
-  containerVariants,
-  childVariants,
-  childVariants2,
-  imgVariants,
-} from "../animationVariants";
+import { getMovie } from "../services/axios";
+import { containerVariants } from "../animationVariants";
 import MovieCard from "./MovieCard";
 
 function Homepage() {
@@ -64,6 +58,7 @@ function Homepage() {
             animate="visible"
             onAnimationComplete={() => onComplete()}
             className="w-[50%] mx-auto"
+            onClick={() => console.log("clicked")}
           >
             {results.map(
               ({ title, poster_path, overview, id, release_date }) => (

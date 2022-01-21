@@ -34,7 +34,7 @@ function MovieCard({
       </motion.div>
       <motion.div
         variants={summaryVariants}
-        className="text-gray-900  text-md w-auto"
+        className="text-gray-900 w-10/12 text-md w-auto"
       >
         <p>{truncateString(overview, 200)}</p>
       </motion.div>
