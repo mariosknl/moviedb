@@ -1,20 +1,18 @@
 import { motion } from "framer-motion";
 
 export const containerVariants = {
-  hidden: {
+  initial: {
     opacity: 0,
-    x: "100vw",
+    translateX: "100vw",
   },
-  visible: {
+  animate: {
     opacity: 1,
-    x: 0,
-    transition: {
-      type: "tween",
-      mass: 0.4,
-      damping: 15,
-      when: "beforeChildren",
-      staggerChildren: 1.5,
-    },
+    translateX: 0,
+  },
+  transition: {
+    duration: 1,
+    delay: 1.5,
+    staggerChildren: 0.5,
   },
 };
 
@@ -38,3 +36,7 @@ export const childVariants2 = {
 // }
 
 // export default MovieCard;
+
+{
+  /* <img src={`https://image.tmdb.org/t/p/w500/${image}`} alt="" /> */
+}

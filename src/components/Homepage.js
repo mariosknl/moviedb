@@ -12,7 +12,6 @@ import {
 
 function Homepage() {
   const [movie, setMovie] = useState("");
-  console.log(movie);
   const {
     register,
     handleSubmit,
@@ -45,18 +44,27 @@ function Homepage() {
         </form>
       </div>
       <div className="grid grid-rows-3 gap-3">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <motion.div variants={childVariants} className="my-10 bg-gray-200">
-            <p>Hello</p>
-          </motion.div>
-          <motion.div variants={childVariants2} className="my-10 bg-gray-200">
-            <p>there</p>
-          </motion.div>
-        </motion.div>
+        {movie &&
+          movie.results.map(({ title, id, backdrop_path }, i) => (
+            <motion.div
+              key={id}
+              initial={{
+                opacity: 0,
+                translateX: "100vw",
+              }}
+              animate={{
+                opacity: 1,
+                translateX: 0,
+              }}
+              transition={{ duration: 1, delay: i * 0.5 }}
+            >
+              <p>{title}</p>
+              <img
+                src={`https://image.tmdb.org/t/p/w500/${backdrop_path}`}
+                alt=""
+              />
+            </motion.div>
+          ))}
       </div>
     </>
   );
