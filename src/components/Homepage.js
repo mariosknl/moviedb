@@ -28,6 +28,9 @@ function Homepage() {
     getMovie(inputValue, setMovie);
   }, [inputValue]);
 
+  const { results } = movie;
+  console.log(results);
+
   return (
     <>
       <div>
@@ -44,23 +47,31 @@ function Homepage() {
         </form>
       </div>
       <div className="grid grid-rows-3 gap-3">
-        {movie &&
-          movie.results.map(({ title, id, backdrop_path }, i) => (
+        <>
+          {movie && (
             <motion.div
-              key={id}
               variants={containerVariants}
               initial="hidden"
               animate="visible"
             >
-              <motion.p variants={childVariants}>{title}</motion.p>
-              <motion.div variants={childVariants}>
-                <img
-                  src={`https://image.tmdb.org/t/p/w500/${backdrop_path}`}
-                  alt=""
-                />
-              </motion.div>
+              {results.map(({ title, backdrop_path, id }) => {
+                return (
+                  <>
+                    <motion.p key={id} variants={childVariants}>
+                      {title}
+                    </motion.p>
+                    <motion.div variants={childVariants}>
+                      <img
+                        src={`https://image.tmdb.org/t/p/w500/${backdrop_path}`}
+                        alt=""
+                      />
+                    </motion.div>
+                  </>
+                );
+              })}
             </motion.div>
-          ))}
+          )}
+        </>
       </div>
     </>
   );
