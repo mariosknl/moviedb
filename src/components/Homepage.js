@@ -8,7 +8,8 @@ import {
   containerVariants,
   childVariants,
   childVariants2,
-} from "../components/MovieCard";
+  imgVariants,
+} from "../animationVariants";
 
 function Homepage() {
   const [movie, setMovie] = useState("");
@@ -50,7 +51,7 @@ function Homepage() {
           <input type="submit" />
         </form>
       </div>
-      <div className="grid grid-rows-3 gap-3">
+      <div>
         {movie && (
           <motion.div
             variants={containerVariants}
@@ -60,22 +61,31 @@ function Homepage() {
           >
             {results.map(({ title, poster_path, id, release_date }) => {
               return (
-                <div key={id}>
-                  <motion.p variants={childVariants}>{title}</motion.p>
-                  <motion.div variants={childVariants}>
+                <div key={id} className="grid grid-rows-3 grid-flow-col gap-4">
+                  <motion.p
+                    variants={childVariants}
+                    className="col-span-2 bg-gray-700"
+                  >
+                    {title}
+                  </motion.p>
+                  <motion.div
+                    variants={imgVariants}
+                    className="row-span-3 bg-yellow-500 w-full"
+                  >
                     <img
                       src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
                       alt=""
+                      className="w-[25%]"
                     />
                   </motion.div>
                   <motion.p
-                    className="text-white"
+                    className="text-white row-span-2 col-span-2 bg-red-400"
                     animate={{
                       textShadow: "0px 0px 10px rgb(0,0,0)",
                       boxShadown: "0px 0px 10px rgb(0,0,0)",
                       transition: {
                         duration: 1.5,
-                        yoyo: Infinity,
+                        repeat: Infinity,
                       },
                     }}
                   >

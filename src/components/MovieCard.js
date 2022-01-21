@@ -1,39 +1,32 @@
-import { motion } from "framer-motion";
+function MovieCard({ title, poster_path, id, release_date, pulseEffect }) {
+  <div key={id} className="grid grid-rows-3 grid-flow-col gap-4">
+    <motion.p variants={childVariants} className="col-span-2 bg-gray-700">
+      {title}
+    </motion.p>
+    <motion.div
+      variants={imgVariants}
+      className="row-span-3 bg-yellow-500 w-full"
+    >
+      <img
+        src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+        alt=""
+        className="w-[25%]"
+      />
+    </motion.div>
+    <motion.p
+      className="text-white row-span-2 col-span-2 bg-red-400"
+      animate={{
+        textShadow: "0px 0px 10px rgb(0,0,0)",
+        boxShadown: "0px 0px 10px rgb(0,0,0)",
+        transition: {
+          duration: 1.5,
+          repeat: Infinity,
+        },
+      }}
+    >
+      {pulseEffect && release_date}
+    </motion.p>
+  </div>;
+}
 
-export const containerVariants = {
-  hidden: {
-    opacity: 0,
-    x: "100vw",
-  },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      staggerChildren: 0.5,
-    },
-  },
-};
-
-export const childVariants = {
-  hidden: {
-    opacity: 0,
-  },
-  visible: {
-    opacity: 1,
-  },
-};
-
-export const childVariants2 = {
-  hidden: {
-    scale: 1,
-  },
-  visible: {
-    scale: 1.1,
-    textShadow: "0px 0px 8px rgb(255,255,255)",
-    boxShadown: "0px 0px 8px rgb(255,255,255)",
-    transition: {
-      duration: 0.3,
-      yoyo: Infinity,
-    },
-  },
-};
+export default MovieCard;
