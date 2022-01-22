@@ -47,17 +47,22 @@ function Homepage() {
         <h1 className="text-3xl font-bold text-center w-[80%] mx-auto my-5">
           Welcome to the MovieDb
         </h1>
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="bg-yellow-200 w-[50%] text-center"
-        >
+        <form onSubmit={handleSubmit(onSubmit)} className="w-[50%] text-center">
           <input
             {...register("searchInput")}
             placeholder="Search for your desired movie..."
-            className="w-[80%] p-2"
+            className="w-[65%] p-2"
           />
-          <input type="submit" className="p-2 border w-[20%]" />
-          <button type="button" onClick={resetMovies} placeholder="X">
+          <input
+            type="submit"
+            className="p-2 bg-lime-300 rounded-md border w-[20%]"
+          />
+          <button
+            type="button"
+            className="w-[10%] bg-red-500 p-5 ml-5 rounded-full"
+            onClick={resetMovies}
+            placeholder="X"
+          >
             X
           </button>
         </form>
