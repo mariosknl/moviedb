@@ -8,11 +8,11 @@ import Homepage from "./Homepage";
 
 function MoviePage() {
   const [movieDetails, setMovieDetails] = useState("");
-  let { title } = useParams();
+  let { id } = useParams();
   const navigate = useNavigate();
   useEffect(() => {
-    getMoviePage(title, setMovieDetails);
-  }, [title]);
+    getMoviePage(id, setMovieDetails);
+  }, [id]);
 
   const { backdrop_path, poster_path, original_title, overview, release_date } =
     movieDetails;

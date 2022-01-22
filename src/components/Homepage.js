@@ -25,7 +25,6 @@ function Homepage() {
 
   useEffect(() => {
     const localStorageMovie = localStorage.getItem("movies");
-    console.log(JSON.parse(localStorageMovie));
     if (localStorageMovie) {
       setMovie(JSON.parse(localStorageMovie));
     } else {

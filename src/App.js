@@ -7,23 +7,10 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/movie/:title" element={<MoviePage />} />
+        <Route path="/movie/:id" element={<MoviePage />} />
       </Routes>
     </Router>
   );
 }
 
 export default App;
-
-{
-  /* <Route path="/" element={<App />} />
-<Route path="/:title" element={MoviePage} />
-<Route
-  path="*"
-  element={
-    <main style={{ padding: "1rem" }}>
-      <p>There's nothing here!</p>
-    </main>
-  }
-/> */
-}
