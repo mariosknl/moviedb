@@ -72,11 +72,11 @@ export const detailsVariants = {
   hidden: {
     opacity: 0,
     x: "20vw",
-    y: "-13vh",
+    y: "-15vh",
   },
   visible: {
     opacity: 1,
     x: "20vw",
-    y: "-13vh",
+    y: "-15vh",
   },
 };
