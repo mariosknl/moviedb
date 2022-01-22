@@ -1,10 +1,10 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
 import { getMovie } from "../services/axios";
 import { containerVariants } from "../animationVariants";
 import MovieCard from "./MovieCard";
+import { Link } from "react-router-dom";
 
 function Homepage() {
   const [movie, setMovie] = useState("");
@@ -26,7 +26,6 @@ function Homepage() {
   }, [inputValue]);
 
   const { results } = movie;
-  console.log(results);
 
   const onComplete = () => {
     setPulseEffect(true);
@@ -58,11 +57,11 @@ function Homepage() {
             animate="visible"
             onAnimationComplete={() => onComplete()}
             className="w-[50%] mx-auto"
-            onClick={() => console.log("clicked")}
           >
             {results.map(
               ({ title, poster_path, overview, id, release_date }) => (
                 <MovieCard
+                  id={id}
                   title={title}
                   overview={overview}
                   poster_path={poster_path}
@@ -72,7 +71,6 @@ function Homepage() {
                 />
               )
             )}
-            )
           </motion.div>
         )}
       </div>

@@ -50,3 +50,33 @@ export const imgVariants = {
     x: "10%",
   },
 };
+
+export const dateVariants = {
+  hidden: {
+    x: "20vw",
+    y: "-15vh",
+  },
+  visible: {
+    x: "20vw",
+    y: "-15vh",
+    textShadow: "0px 0px 10px rgb(0,0,0)",
+    boxShadown: "0px 0px 10px rgb(0,0,0)",
+    transition: {
+      duration: 1.5,
+      repeat: Infinity,
+    },
+  },
+};
+
+export const detailsVariants = {
+  hidden: {
+    opacity: 0,
+    x: "20vw",
+    y: "-13vh",
+  },
+  visible: {
+    opacity: 1,
+    x: "20vw",
+    y: "-13vh",
+  },
+};

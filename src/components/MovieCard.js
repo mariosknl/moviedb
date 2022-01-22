@@ -3,9 +3,12 @@ import {
   childVariants,
   imgVariants,
   summaryVariants,
+  dateVariants,
+  detailsVariants,
 } from "../animationVariants";
 import { truncateString } from "../utils";
 import missing from "../photos/not_available.png";
+import { Link } from "react-router-dom";
 
 function MovieCard({
   title,
@@ -13,9 +16,10 @@ function MovieCard({
   overview,
   release_date,
   pulseEffect,
+  id,
 }) {
   return (
-    <div className="w-full h-96">
+    <div className="w-full h-96 cursor-pointer">
       <motion.p
         variants={childVariants}
         className="text-gray-900 font-bold text-xl"
@@ -34,12 +38,12 @@ function MovieCard({
       </motion.div>
       <motion.div
         variants={summaryVariants}
-        className="text-gray-900 w-10/12 text-md w-auto"
+        className="text-gray-900 w-10/12 text-md h-auto"
       >
         <p>{truncateString(overview, 200)}</p>
       </motion.div>
       <motion.p
-        className="w-20 h-10 rounded-full mr-4 text-sm"
+        className="w-24 h-10 rounded-full mr-4 text-sm"
         initial={{ x: "20vw", y: "-15vh" }}
         animate={{
           x: "20vw",
@@ -52,7 +56,10 @@ function MovieCard({
           },
         }}
       >
-        {pulseEffect && release_date}
+        {pulseEffect && <span>Release Date: {release_date}</span>}
+      </motion.p>
+      <motion.p variants={detailsVariants}>
+        <Link to={`/movie/${id}`}>View Movie Details</Link>
       </motion.p>
     </div>
   );
