@@ -38,6 +38,8 @@ function Homepage() {
   const resetMovies = () => {
     reset({ searchInput: "" });
     localStorage.removeItem("movies");
+    setMovie("");
+    setPulseEffect(false);
   };
 
   return (
