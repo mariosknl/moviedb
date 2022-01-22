@@ -4,8 +4,6 @@ import { getMoviePage } from "../services/axios.js";
 import missing from "../photos/not_available.png";
 import { useNavigate } from "react-router-dom";
 
-import Homepage from "./Homepage";
-
 function MoviePage() {
   const [movieDetails, setMovieDetails] = useState("");
   let { id } = useParams();
@@ -14,8 +12,7 @@ function MoviePage() {
     getMoviePage(id, setMovieDetails);
   }, [id]);
 
-  const { backdrop_path, poster_path, original_title, overview, release_date } =
-    movieDetails;
+  const { poster_path, original_title, overview, release_date } = movieDetails;
   return (
     <div className="flex items-center flex-col w-full h-[100vh] mx-auto  bg-gray-200">
       <div className="mt-5 h-2/4">

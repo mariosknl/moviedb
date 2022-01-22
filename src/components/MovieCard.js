@@ -3,7 +3,6 @@ import {
   childVariants,
   imgVariants,
   summaryVariants,
-  dateVariants,
   detailsVariants,
 } from "../animationVariants";
 import { truncateString } from "../utils";
