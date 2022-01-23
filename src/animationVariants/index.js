@@ -29,12 +29,12 @@ export const summaryVariants = {
   hidden: {
     x: "20vw",
     opacity: 0,
-    y: "-25vh",
+    y: "-30vh",
   },
   visible: {
     x: "20vw",
     opacity: 1,
-    y: "-25vh",
+    y: "-30vh",
   },
 };
 
@@ -52,11 +52,11 @@ export const imgVariants = {
 export const dateVariants = {
   hidden: {
     x: "20vw",
-    y: "-15vh",
+    y: "-10vh",
   },
   visible: {
     x: "20vw",
-    y: "-15vh",
+    y: "-10vh",
     textShadow: "0px 0px 10px rgb(0,0,0)",
     boxShadown: "0px 0px 10px rgb(0,0,0)",
     transition: {
@@ -70,11 +70,11 @@ export const detailsVariants = {
   hidden: {
     opacity: 0,
     x: "20vw",
-    y: "-15vh",
+    y: "-8vh",
   },
   visible: {
     opacity: 1,
     x: "20vw",
-    y: "-15vh",
+    y: "-8vh",
   },
 };

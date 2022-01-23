@@ -12,7 +12,20 @@ function MoviePage() {
     getMoviePage(id, setMovieDetails);
   }, [id]);
 
-  const { poster_path, original_title, overview, release_date } = movieDetails;
+  const {
+    poster_path,
+    original_title,
+    overview,
+    release_date,
+    popularity,
+    production_companies,
+    production_countries,
+    revenue,
+    budget,
+  } = movieDetails;
+  console.log(movieDetails);
+
+  const date = new Date(release_date);
   return (
     <div className="flex items-center flex-col w-full h-[100vh] mx-auto  bg-gray-200">
       <div className="mt-5 h-2/4">
@@ -29,7 +42,7 @@ function MoviePage() {
       <div className="flex items-center flex-col">
         <p className="py-8 font-bold text-2xl underline">{original_title}</p>
         <p className="w-[50%] text-md">{overview}</p>
-        <p className="py-3 font-bold">Release Date: {release_date}</p>
+        <p className="py-3 font-bold">{`Release Date: ${date}`}</p>
       </div>
       <a
         className="p-3 w-20 cursor-pointer text-center text-white bg-blue-500 rounded-md"
