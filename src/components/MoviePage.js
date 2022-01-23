@@ -31,12 +31,12 @@ function MoviePage() {
         <p className="w-[50%] text-md">{overview}</p>
         <p className="py-3 font-bold">Release Date: {release_date}</p>
       </div>
-      <button
-        className="p-2 w-20 text-white bg-blue-500 rounded-md"
+      <a
+        className="p-3 w-20 cursor-pointer text-center text-white bg-blue-500 rounded-md"
         onClick={() => navigate(-1)}
       >
         Back
-      </button>
+      </a>
     </div>
   );
 }

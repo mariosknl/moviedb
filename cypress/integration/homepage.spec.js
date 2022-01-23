@@ -32,4 +32,16 @@ describe("Landing to the homepage and searching for a movie", () => {
   it("saves the data to localstorage", () => {
     expect(localStorage.getItem("movies")).to.be.null;
   });
+  it("clicks view movie details and navigates to a new page", () => {
+    cy.get("a").first().click();
+  });
+  it("changes the url based on the ID of the movie in the API", () => {
+    cy.url().should("eq", "http://localhost:3000/movie/121");
+  });
+  it("shows details for The Two Towers movie", () => {
+    cy.get("img").should("be.visible");
+    cy.get("p").first().contains("The Two Towers");
+    cy.contains("Frodo");
+    cy.contains("Release Date");
+  });
 });
