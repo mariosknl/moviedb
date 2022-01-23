@@ -51,8 +51,8 @@ function MovieCard({
         animate={{
           x: "20vw",
           y: "-18vh",
-          textShadow: "0px 0px 10px rgb(0,0,0)",
-          boxShadown: "0px 0px 10px rgb(0,0,0)",
+          textShadow: "0px 0px 8px rgb(0,0,0)",
+          boxShadown: "0px 0px 8px rgb(0,0,0)",
           transition: {
             duration: 1.5,
             repeat: Infinity,

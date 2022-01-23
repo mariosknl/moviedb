@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { getMoviePage } from "../services/axios.js";
 import missing from "../photos/not_available.png";
 import { useNavigate } from "react-router-dom";
+import logo from "../photos/logo_not_available.jpeg";
 
 function MoviePage() {
   const [movieDetails, setMovieDetails] = useState("");
@@ -23,26 +24,70 @@ function MoviePage() {
     revenue,
     budget,
   } = movieDetails;
-  console.log(movieDetails);
 
   const date = new Date(release_date);
   return (
-    <div className="flex items-center flex-col w-full h-[100vh] mx-auto  bg-gray-200">
-      <div className="mt-5 h-2/4">
+    <div className="grid grid-cols-2 w-[80%] mx-auto mt-10  bg-[#75b7ee]">
+      <div className="mt-5">
         {poster_path !== null ? (
           <img
             src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
             alt=""
-            className="h-full"
+            className="h-full mx-auto"
           />
         ) : (
           <img src={missing} alt="missing" />
         )}
       </div>
-      <div className="flex items-center flex-col">
-        <p className="py-8 font-bold text-2xl underline">{original_title}</p>
-        <p className="w-[50%] text-md">{overview}</p>
-        <p className="py-3 font-bold">{`Release Date: ${date}`}</p>
+      <div>
+        <h1 className="text-center text-3xl font-bold">{original_title}</h1>
+        <div className="h-2/4 mt-20">
+          <div className="flex flex-col">
+            <p>Overview</p>
+            <p>{overview}</p>
+          </div>
+          <div className="flex flex-col mt-5">
+            <p>Release Date</p>
+            <p>{`${date}`}</p>
+          </div>
+          <div className="flex flex-col mt-5">
+            <p>Popularity</p>
+            <p>{popularity}</p>
+          </div>
+          <div className="flex flex-col mt-5">
+            <p>Production Companies</p>
+            <div className="flex flex-row">
+              {production_companies.map(
+                ({ id, logo_path, name, origin_country }) => {
+                  return (
+                    <div key={id}>
+                      {logo_path !== null ? (
+                        <img
+                          src={`https://image.tmdb.org/t/p/w500/${logo_path}`}
+                          alt="company logo path"
+                        />
+                      ) : (
+                        <img src={logo} alt="company logo path" />
+                      )}
+                      <p>{name}</p>
+                      <p>{origin_country}</p>
+                    </div>
+                  );
+                }
+              )}
+            </div>
+          </div>
+          <div className="flex flex-row justify-around">
+            <div className="flex flex-col mt-5">
+              <p className="font-bold text-center">Budget</p>
+              <p>${budget}</p>
+            </div>
+            <div className="flex flex-col mt-5">
+              <p className="font-bold text-center">Revenue</p>
+              <p>${revenue}</p>
+            </div>
+          </div>
+        </div>
       </div>
       <a
         className="p-3 w-20 cursor-pointer text-center text-white bg-blue-500 rounded-md"

@@ -39,7 +39,6 @@ function Homepage() {
   }, [inputValue]);
 
   const { results } = movie;
-  console.log(results);
 
   const resetMovies = () => {
     reset({ searchInput: "" });
