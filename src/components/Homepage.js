@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { getMovie } from "../services/axios";
 import { containerVariants } from "../animationVariants";
 import MovieCard from "./MovieCard";
-import { useNavigate } from "react-router-dom";
 
 function Homepage() {
   const [movie, setMovie] = useState("");
@@ -17,7 +16,6 @@ function Homepage() {
     formState: { errors },
   } = useForm();
   const inputValue = getValues("searchInput");
-  const navigate = useNavigate();
 
   const onSubmit = (data) => {
     console.log(data);
