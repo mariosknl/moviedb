@@ -1,5 +1,9 @@
 {
   "baseUrl": "http://localhost:3000",
   "viewportWidth": 1440,
-  "viewportHeight": 768
+  "viewportHeight": 768,
+  "component": {
+    "componentFolder": "src",
+    "testFiless": "**/*spec.{js,jsx,ts,tsx}"
+  }
 }

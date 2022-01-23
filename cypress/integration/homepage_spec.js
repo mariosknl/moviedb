@@ -1,3 +1,5 @@
+import { mount } from "@cypress/react";
+
 describe("Landing to the homepage and searching for a movie", () => {
   it("Visits the MovieDb homepage", () => {
     cy.visit("/");

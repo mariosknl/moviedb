@@ -4,20 +4,12 @@ import { motion } from "framer-motion";
 import { getMovie } from "../services/axios";
 import { containerVariants } from "../animationVariants";
 import MovieCard from "./MovieCard";
-import { useNavigate } from "react-router-dom";
 
 function Homepage() {
   const [movie, setMovie] = useState("");
   const [pulseEffect, setPulseEffect] = useState(false);
-  const {
-    register,
-    handleSubmit,
-    getValues,
-    reset,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit, getValues, reset } = useForm();
   const inputValue = getValues("searchInput");
-  const navigate = useNavigate();
 
   const onSubmit = (data) => {
     console.log(data);
