@@ -34,6 +34,7 @@ function MoviePage() {
       <a
         className="p-3 w-20 cursor-pointer text-center text-white bg-blue-500 rounded-md"
         onClick={() => navigate(-1)}
+        id="back"
       >
         Back
       </a>

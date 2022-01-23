@@ -1,4 +1,13 @@
 describe("Landing to the homepage and searching for a movie", () => {
+  before(() => {
+    cy.clearLocalStorageSnapshot();
+  });
+  beforeEach(() => {
+    cy.restoreLocalStorage();
+  });
+  afterEach(() => {
+    cy.saveLocalStorage();
+  });
   it("Visits the MovieDb homepage", () => {
     cy.visit("/");
     cy.contains("Welcome to the MovieDb");
@@ -15,6 +24,7 @@ describe("Landing to the homepage and searching for a movie", () => {
       )}&query='Lord of the Rings'`
     ).should((response) => {
       expect(response.status).to.eq(200);
+      cy.saveLocalStorage("movies");
     });
   });
   it("searching Lord of the Rings", () => {
@@ -30,7 +40,7 @@ describe("Landing to the homepage and searching for a movie", () => {
     cy.contains("Release Date");
   });
   it("saves the data to localstorage", () => {
-    expect(localStorage.getItem("movies")).to.be.null;
+    cy.getLocalStorage("movies");
   });
   it("clicks view movie details and navigates to a new page", () => {
     cy.get("a").first().click();
@@ -43,5 +53,10 @@ describe("Landing to the homepage and searching for a movie", () => {
     cy.get("p").first().contains("The Two Towers");
     cy.contains("Frodo");
     cy.contains("Release Date");
+  });
+  it("click back to see the results again", () => {
+    cy.visit("/");
+    cy.getLocalStorage("movies");
+    cy.contains("The Two Towers");
   });
 });
