@@ -8,7 +8,13 @@ import MovieCard from "./MovieCard";
 function Homepage() {
   const [movie, setMovie] = useState("");
   const [pulseEffect, setPulseEffect] = useState(false);
-  const { register, handleSubmit, getValues, reset } = useForm();
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    reset,
+    formState: { errors },
+  } = useForm();
   const inputValue = getValues("searchInput");
 
   const onSubmit = (data) => {
