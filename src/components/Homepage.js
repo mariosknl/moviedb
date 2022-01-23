@@ -4,9 +4,11 @@ import { motion } from "framer-motion";
 import { getMovie } from "../services/axios";
 import { containerVariants } from "../animationVariants";
 import MovieCard from "./MovieCard";
+import { useTestContext } from "../context";
 
 function Homepage() {
   const [movie, setMovie] = useState("");
+  const [search, setSearch] = useTestContext();
   const [pulseEffect, setPulseEffect] = useState(false);
   const {
     register,
@@ -16,6 +18,12 @@ function Homepage() {
     formState: { errors },
   } = useForm();
   const inputValue = getValues("searchInput");
+
+  useEffect(() => {
+    if (search !== inputValue) {
+      setSearch(inputValue);
+    }
+  }, [inputValue]);
 
   const onSubmit = (data) => {
     console.log(data);
@@ -50,6 +58,7 @@ function Homepage() {
             {...register("searchInput")}
             placeholder="Search for your desired movie..."
             className="w-[65%] p-2"
+            defaultValue={search}
           />
           <input
             type="submit"

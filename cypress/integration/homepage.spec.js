@@ -20,7 +20,6 @@ describe("Landing to the homepage and searching for a movie", () => {
   it("searching Lord of the Rings", () => {
     cy.get("input[name=searchInput").type("Lord of the Rings");
     cy.get("input[type=submit]").click();
-    cy.wait(1000);
   });
   it("making a request to moviedb API for Lord of the Rings and getting a response.status of 200", () => {
     cy.request(
@@ -36,6 +35,8 @@ describe("Landing to the homepage and searching for a movie", () => {
     cy.contains("The Two Towers");
   });
   it("displays the release date of each movie after every result is populated", () => {
+    // waiting for every result to show in the screen before display the release date.
+    // we are waiting for 25 seconds
     cy.wait(25000);
     cy.contains("Release Date");
   });
