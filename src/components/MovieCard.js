@@ -37,7 +37,7 @@ function MovieCard({
       </motion.div>
       <motion.div
         variants={summaryVariants}
-        className="text-gray-900 w-10/12 text-md h-auto absolute"
+        className="text-gray-900 w-10/12 text-md h-auto absolute top-24"
       >
         {poster_path !== null ? (
           <p>{truncateString(overview, 200)}</p>
@@ -46,7 +46,7 @@ function MovieCard({
         )}
       </motion.div>
       <motion.p
-        className="w-24 h-10 rounded-full mr-4 text-sm"
+        className="w-24 h-10 rounded-full mr-4 text-sm absolute top-10"
         initial={{ x: "20vw", y: "-18vh" }}
         animate={{
           x: "20vw",
@@ -63,7 +63,7 @@ function MovieCard({
       </motion.p>
       <motion.p
         variants={detailsVariants}
-        className="cursor-pointer hover:underline max-w-xs"
+        className="cursor-pointer hover:underline max-w-xs absolute bottom-8"
       >
         <Link to={`/movie/${id}`}>View Movie Details</Link>
       </motion.p>
