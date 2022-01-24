@@ -46,7 +46,7 @@ function MovieCard({
         )}
       </motion.div>
       <motion.p
-        className="w-24 h-10 rounded-full mr-4 text-sm absolute top-10"
+        className="w-24 h-10 rounded-full mr-4 text-sm absolute top-5"
         initial={{ x: "20vw", y: "-18vh" }}
         animate={{
           x: "20vw",

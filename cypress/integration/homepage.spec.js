@@ -40,7 +40,7 @@ describe("Landing to the homepage and searching for a movie", () => {
     cy.contains("The Two Towers");
   });
   it("displays the release date of each movie after every result is populated", () => {
-    // waiting for every result to show in the screen before display the release date.
+    // waiting for every result to show in the screen before displaying the release date.
     // we are waiting for 25 seconds until all the animation is complete
     cy.get("input[name=searchInput").type("Lord of the Rings");
     cy.get("input[type=submit]").click();
@@ -49,35 +49,5 @@ describe("Landing to the homepage and searching for a movie", () => {
   });
   it("saves the data to localstorage", () => {
     cy.getLocalStorage("movies");
-  });
-  it("clicks view movie details and navigates to a new page", () => {
-    cy.get("input[name=searchInput").type("Lord of the Rings");
-    cy.get("input[type=submit]").click();
-    cy.get("a").first().click();
-  });
-  it("changes the url based on the ID of the movie in the API", () => {
-    cy.get("input[name=searchInput").type("Lord of the Rings");
-    cy.get("input[type=submit]").click();
-    cy.get("a").first().click();
-    cy.url().should("eq", "http://localhost:3000/movie/121");
-  });
-  it("shows details for The Two Towers movie", () => {
-    cy.get("input[name=searchInput").type("Lord of the Rings");
-    cy.get("input[type=submit]").click();
-    cy.get("a").first().click();
-    cy.url().should("eq", "http://localhost:3000/movie/121");
-    cy.get("img").should("be.visible");
-    cy.get("p").first().contains("The Two Towers");
-    cy.contains("Frodo");
-    cy.contains("Release Date");
-  });
-  it("click back to see the results again", () => {
-    cy.get("input[name=searchInput").type("Lord of the Rings");
-    cy.get("input[type=submit]").click();
-    cy.get("a").first().click();
-    cy.url().should("eq", "http://localhost:3000/movie/121");
-    cy.visit("/");
-    cy.getLocalStorage("movies");
-    cy.contains("The Two Towers");
   });
 });
