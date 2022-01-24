@@ -18,7 +18,7 @@ function MovieCard({
   id,
 }) {
   return (
-    <div className="w-full h-96">
+    <div className="w-full h-96 relative">
       <motion.p
         variants={childVariants}
         className="text-gray-900 font-bold text-xl"
@@ -37,7 +37,7 @@ function MovieCard({
       </motion.div>
       <motion.div
         variants={summaryVariants}
-        className="text-gray-900 w-10/12 text-md h-auto"
+        className="text-gray-900 w-10/12 text-md h-auto absolute top-24"
       >
         {poster_path !== null ? (
           <p>{truncateString(overview, 200)}</p>
@@ -46,13 +46,13 @@ function MovieCard({
         )}
       </motion.div>
       <motion.p
-        className="w-24 h-10 rounded-full mr-4 text-sm"
+        className="w-24 h-10 rounded-full mr-4 text-sm absolute top-5"
         initial={{ x: "20vw", y: "-18vh" }}
         animate={{
           x: "20vw",
           y: "-18vh",
-          textShadow: "0px 0px 10px rgb(0,0,0)",
-          boxShadown: "0px 0px 10px rgb(0,0,0)",
+          textShadow: "0px 0px 8px rgb(0,0,0)",
+          boxShadown: "0px 0px 8px rgb(0,0,0)",
           transition: {
             duration: 1.5,
             repeat: Infinity,
@@ -61,7 +61,10 @@ function MovieCard({
       >
         {pulseEffect && <span>Release Date: {release_date}</span>}
       </motion.p>
-      <motion.p variants={detailsVariants} className="cursor-pointer">
+      <motion.p
+        variants={detailsVariants}
+        className="cursor-pointer hover:underline max-w-xs absolute bottom-8"
+      >
         <Link to={`/movie/${id}`}>View Movie Details</Link>
       </motion.p>
     </div>

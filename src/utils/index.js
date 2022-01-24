@@ -4,3 +4,8 @@ export function truncateString(str, num) {
   }
   return str.slice(0, num) + "...";
 }
+
+export const formatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+});

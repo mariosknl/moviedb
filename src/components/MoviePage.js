@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { getMoviePage } from "../services/axios.js";
 import missing from "../photos/not_available.png";
 import { useNavigate } from "react-router-dom";
+import logo from "../photos/logo_not_available.jpeg";
+import { formatter } from "../utils";
 
 function MoviePage() {
   const [movieDetails, setMovieDetails] = useState("");
@@ -12,31 +14,106 @@ function MoviePage() {
     getMoviePage(id, setMovieDetails);
   }, [id]);
 
-  const { poster_path, original_title, overview, release_date } = movieDetails;
+  const {
+    poster_path,
+    original_title,
+    overview,
+    release_date,
+    popularity,
+    production_companies,
+    production_countries,
+    revenue,
+    budget,
+  } = movieDetails;
+
+  const date = new Date(release_date);
   return (
-    <div className="flex items-center flex-col w-full h-[100vh] mx-auto  bg-gray-200">
-      <div className="mt-5 h-2/4">
+    <div className="grid grid-cols-2 w-[80%] mx-auto mt-10  bg-[#75b7ee]">
+      <div className="mt-5">
         {poster_path !== null ? (
           <img
             src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
             alt=""
-            className="h-full"
+            className="h-full mx-auto"
           />
         ) : (
           <img src={missing} alt="missing" />
         )}
       </div>
-      <div className="flex items-center flex-col">
-        <p className="py-8 font-bold text-2xl underline">{original_title}</p>
-        <p className="w-[50%] text-md">{overview}</p>
-        <p className="py-3 font-bold">Release Date: {release_date}</p>
+      <div>
+        <h1 className="text-center text-3xl font-bold">{original_title}</h1>
+        <div className="h-2/4 mt-20">
+          <div className="flex flex-col">
+            <p className="text-xl font-bold">Overview</p>
+            <p>{overview}</p>
+          </div>
+          <div className="flex flex-col mt-5">
+            <p className="text-xl font-bold">Release Date</p>
+            <p>{`${date}`}</p>
+          </div>
+          <div className="flex flex-col mt-5">
+            <p className="text-xl font-bold">Popularity</p>
+            <p>{popularity}</p>
+          </div>
+          <div className="flex flex-col mt-5">
+            <p className="text-xl font-bold">Production Companies</p>
+            <div className="flex flex-row">
+              {production_companies &&
+                production_companies.map(
+                  ({ id, logo_path, name, origin_country }) => {
+                    return (
+                      <div key={id}>
+                        {logo_path !== null ? (
+                          <img
+                            className="w-46 h-24"
+                            src={`https://image.tmdb.org/t/p/w500/${logo_path}`}
+                            alt="company logo path"
+                          />
+                        ) : (
+                          <img
+                            className="w-46 h-24"
+                            src={logo}
+                            alt="company logo path"
+                          />
+                        )}
+                        <p>{name}</p>
+                        <p>{origin_country}</p>
+                      </div>
+                    );
+                  }
+                )}
+            </div>
+          </div>
+          <div className="flex flex-col mt-5">
+            <p className="text-xl font-bold">Production Countries</p>
+            <div className="flex flex-row">
+              {production_countries &&
+                production_countries.map(({ name }, i) => (
+                  <div key={i} className="flex flex-row justify-between w-56">
+                    <p>{name}</p>
+                  </div>
+                ))}
+            </div>
+          </div>
+          <div className="flex flex-row justify-around">
+            <div className="flex flex-col mt-5">
+              <p className="font-bold text-center">Budget</p>
+              <p>{formatter.format(budget)}</p>
+            </div>
+            <div className="flex flex-col mt-5">
+              <p className="font-bold text-center">Revenue</p>
+              <p>{formatter.format(revenue)}</p>
+            </div>
+          </div>
+        </div>
       </div>
-      <button
-        className="p-2 w-20 text-white bg-blue-500 rounded-md"
+      <a
+        className="p-3 w-20 cursor-pointer text-center text-white bg-blue-500 rounded-md"
         onClick={() => navigate(-1)}
+        id="back"
       >
         Back
-      </button>
+      </a>
     </div>
   );
 }
