@@ -2,33 +2,33 @@ describe("Landing to the homepage and searching for a movie", () => {
   beforeEach(() => {
     cy.visit("/");
   });
-  it("clicks view movie details and navigates to a new page", () => {
+  it("uses the id from the URL to send a new request to the MovieDB API to get results for the requested movie", () => {
     cy.get("input[name=searchInput").type("Lord of the Rings");
     cy.get("input[type=submit]").click();
+    cy.request(
+      `https://api.themoviedb.org/3/search/movie?api_key=${Cypress.env(
+        "api_key"
+      )}&query='Lord of the Rings'`
+    ).should((response) => {
+      expect(response.status).to.eq(200);
+      cy.saveLocalStorage("movies");
+    });
     cy.get("a").first().click();
-  });
-  it("changes the url based on the ID of the movie in the API", () => {
-    cy.get("input[name=searchInput").type("Lord of the Rings");
-    cy.get("input[type=submit]").click();
-    cy.get("a").first().click();
-    cy.url().should("eq", "http://localhost:3000/movie/121");
-  });
-  it("shows details for The Two Towers movie", () => {
-    cy.get("input[name=searchInput").type("Lord of the Rings");
-    cy.get("input[type=submit]").click();
-    cy.get("a").first().click();
-    cy.url().should("eq", "http://localhost:3000/movie/121");
-    cy.get("h1").first().contains("The Two Towers");
-    cy.contains("Frodo");
+    // 121 in the request below is the ID for the specific movie title.
+    //In the project it is replaced by a variable that comes from the
+    // previous page
+    cy.request(
+      `https://api.themoviedb.org/3/movie/121?api_key=${Cypress.env("api_key")}`
+    ).should((response) => {
+      expect(response.status).to.eq(200);
+      cy.saveLocalStorage("movies");
+    });
+    cy.contains("Overview");
     cy.contains("Release Date");
-  });
-  it("click back to see the results again", () => {
-    cy.get("input[name=searchInput").type("Lord of the Rings");
-    cy.get("input[type=submit]").click();
-    cy.get("a").first().click();
-    cy.url().should("eq", "http://localhost:3000/movie/121");
-    cy.get("#back").click();
-    cy.getLocalStorage("movies");
-    cy.contains("The Two Towers");
+    cy.contains("Popularity");
+    cy.contains("Production Companies");
+    cy.contains("Production Countries");
+    cy.contains("Budget");
+    cy.contains("Revenue");
   });
 });
