@@ -4,6 +4,7 @@ import { getMoviePage } from "../services/axios.js";
 import missing from "../photos/not_available.png";
 import { useNavigate } from "react-router-dom";
 import logo from "../photos/logo_not_available.jpeg";
+import { formatter } from "../utils";
 
 function MoviePage() {
   const [movieDetails, setMovieDetails] = useState("");
@@ -43,48 +44,65 @@ function MoviePage() {
         <h1 className="text-center text-3xl font-bold">{original_title}</h1>
         <div className="h-2/4 mt-20">
           <div className="flex flex-col">
-            <p>Overview</p>
+            <p className="text-xl font-bold">Overview</p>
             <p>{overview}</p>
           </div>
           <div className="flex flex-col mt-5">
-            <p>Release Date</p>
+            <p className="text-xl font-bold">Release Date</p>
             <p>{`${date}`}</p>
           </div>
           <div className="flex flex-col mt-5">
-            <p>Popularity</p>
+            <p className="text-xl font-bold">Popularity</p>
             <p>{popularity}</p>
           </div>
           <div className="flex flex-col mt-5">
-            <p>Production Companies</p>
+            <p className="text-xl font-bold">Production Companies</p>
             <div className="flex flex-row">
-              {production_companies.map(
-                ({ id, logo_path, name, origin_country }) => {
-                  return (
-                    <div key={id}>
-                      {logo_path !== null ? (
-                        <img
-                          src={`https://image.tmdb.org/t/p/w500/${logo_path}`}
-                          alt="company logo path"
-                        />
-                      ) : (
-                        <img src={logo} alt="company logo path" />
-                      )}
-                      <p>{name}</p>
-                      <p>{origin_country}</p>
-                    </div>
-                  );
-                }
-              )}
+              {production_companies &&
+                production_companies.map(
+                  ({ id, logo_path, name, origin_country }) => {
+                    return (
+                      <div key={id}>
+                        {logo_path !== null ? (
+                          <img
+                            className="w-46 h-24"
+                            src={`https://image.tmdb.org/t/p/w500/${logo_path}`}
+                            alt="company logo path"
+                          />
+                        ) : (
+                          <img
+                            className="w-46 h-24"
+                            src={logo}
+                            alt="company logo path"
+                          />
+                        )}
+                        <p>{name}</p>
+                        <p>{origin_country}</p>
+                      </div>
+                    );
+                  }
+                )}
+            </div>
+          </div>
+          <div className="flex flex-col mt-5">
+            <p className="text-xl font-bold">Production Countries</p>
+            <div className="flex flex-row">
+              {production_countries &&
+                production_countries.map(({ name }, i) => (
+                  <div key={i} className="flex flex-row justify-between w-56">
+                    <p>{name}</p>
+                  </div>
+                ))}
             </div>
           </div>
           <div className="flex flex-row justify-around">
             <div className="flex flex-col mt-5">
               <p className="font-bold text-center">Budget</p>
-              <p>${budget}</p>
+              <p>{formatter.format(budget)}</p>
             </div>
             <div className="flex flex-col mt-5">
               <p className="font-bold text-center">Revenue</p>
-              <p>${revenue}</p>
+              <p>{formatter.format(revenue)}</p>
             </div>
           </div>
         </div>
