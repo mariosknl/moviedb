@@ -1,11 +1,13 @@
 # MovieDB API using ReactJS
 
-This is my version of a movie database using MovieDV API. You can search for a movie and check for all the results associated with it. It's a simple yet powerful UI.
+This is my version of a movie database using MovieDV API. You can search for a movie and check for all the results associated with it. It's a simple yet powerful project. See details of a specific movie but click the `View Movie Details` link which navigates you to a new page with all the details about that movie. You can then click `Back` button which gets you back to the homepage where you can still see the movies you searched for populating again. If you want to search for a new movie, you must click the red `X` button before typing your new one. Click `Submit` and watch the movies displaying to you. Hope you enjoy.
 
 ## BUILD WITH
 
 - ReactJS
-- Tailiwind
+- MovieDB API
+- React Hooks
+- TailwindCSS
 - React Hooks Form
 - React Router DOM 6
 - Framer-Motion
@@ -15,9 +17,9 @@ This is my version of a movie database using MovieDV API. You can search for a m
 
 ## Usage
 
-git clone
-`npm install`
-`npm run start`
+- git clone https://github.com/mariosknl/moviedb.git
+- `npm install`
+- `npm run start`
 
 ## Run Tests
 
