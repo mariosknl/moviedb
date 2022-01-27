@@ -5,6 +5,8 @@ import missing from "../photos/not_available.png";
 import { useNavigate } from "react-router-dom";
 import logo from "../photos/logo_not_available.jpeg";
 import { formatter } from "../utils";
+import ProductionCompanies from "./ProductionCompanies.js";
+import ProductionCountries from "./ProductionCountries.js";
 
 function MoviePage() {
   const [movieDetails, setMovieDetails] = useState("");
@@ -13,6 +15,8 @@ function MoviePage() {
   useEffect(() => {
     getMoviePage(id, setMovieDetails);
   }, [id]);
+
+  console.log(movieDetails);
 
   const {
     poster_path,
@@ -25,6 +29,9 @@ function MoviePage() {
     revenue,
     budget,
   } = movieDetails;
+
+  console.log(production_companies);
+  const { logo_path, name, origin_country } = production_companies;
 
   const date = new Date(release_date);
   return (
@@ -60,27 +67,12 @@ function MoviePage() {
             <div className="flex flex-row">
               {production_companies &&
                 production_companies.map(
-                  ({ id, logo_path, name, origin_country }) => {
-                    return (
-                      <div key={id}>
-                        {logo_path !== null ? (
-                          <img
-                            className="w-46 h-24"
-                            src={`https://image.tmdb.org/t/p/w500/${logo_path}`}
-                            alt="company logo path"
-                          />
-                        ) : (
-                          <img
-                            className="w-46 h-24"
-                            src={logo}
-                            alt="company logo path"
-                          />
-                        )}
-                        <p>{name}</p>
-                        <p>{origin_country}</p>
-                      </div>
-                    );
-                  }
+                  <ProductionCompanies
+                    id={id}
+                    logo_path={logo_path}
+                    name={name}
+                    origin_country={origin_country}
+                  />
                 )}
             </div>
           </div>
@@ -89,9 +81,7 @@ function MoviePage() {
             <div className="flex flex-row">
               {production_countries &&
                 production_countries.map(({ name }, i) => (
-                  <div key={i} className="flex flex-row justify-between w-56">
-                    <p>{name}</p>
-                  </div>
+                  <ProductionCountries name={name} i={i} />
                 ))}
             </div>
           </div>

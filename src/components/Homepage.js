@@ -59,17 +59,16 @@ function Homepage() {
             placeholder="Search for your desired movie..."
             className="w-[65%] p-2 rounded-md rounded-r-none"
             defaultValue={search}
+            data-cy="searchInput"
           />
-          <input
-            type="submit"
-            className="p-2 bg-lime-300 rounded-md rounded-l-none border w-[20%] bg-gradient-to-r from-green-400 to-blue-500 hover:from-purple-500 hover:to-yellow-500 cursor-pointer outline-none"
-          />
+          <input type="submit" className="submitBtn" data-cy="submitBtn" />
 
           <button
             type="button"
             className="w-[10%] bg-red-500 p-5 ml-5 rounded-full"
             onClick={resetMovies}
             placeholder="X"
+            data-cy="resetBtn"
           >
             X
           </button>
