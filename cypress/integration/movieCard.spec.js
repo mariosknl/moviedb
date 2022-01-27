@@ -14,7 +14,7 @@ describe("Landing to the homepage and searching for a movie", () => {
   it("shows details for The Two Towers movie", () => {
     cy.get("a").first().click();
     cy.url().should("eq", "http://localhost:3000/movie/121");
-    cy.get("h1").first().contains("The Two Towers");
+    cy.get("h1").contains("The Two Towers");
     cy.contains("Frodo");
     cy.contains("Release Date");
   });
