@@ -4,13 +4,8 @@ import { getMoviePage } from "../services/axios.js";
 import missing from "../photos/not_available.png";
 import { useNavigate } from "react-router-dom";
 import { formatter } from "../utils";
-<<<<<<< HEAD
-import ProductionCompanies from "./ProductionCompanies.js";
-import ProductionCountries from "./ProductionCountries.js";
-=======
 import ProductionCompany from "./ProductionCompany.js";
 import ProductionCountry from "./ProductionCountry.js";
->>>>>>> testing_new2
 
 function MoviePage() {
   const [movieDetails, setMovieDetails] = useState("");
