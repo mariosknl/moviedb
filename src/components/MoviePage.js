@@ -27,10 +27,6 @@ function MoviePage() {
     budget,
   } = movieDetails;
 
-  console.log(movieDetails);
-
-  // const { logo_path } = production_companies;
-
   const date = new Date(release_date);
   return (
     <div className="grid grid-cols-2 w-[80%] mx-auto mt-10  bg-[#75b7ee]">

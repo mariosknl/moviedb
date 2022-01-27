@@ -2,7 +2,6 @@ import React from "react";
 import logo from "../photos/not_available.png";
 
 function ProductionCompany({ id, logo_path, name, origin_country }) {
-  console.log(logo_path);
   return (
     <div key={id}>
       {logo_path !== null ? (
