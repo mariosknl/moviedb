@@ -15,8 +15,6 @@ function MoviePage() {
     getMoviePage(id, setMovieDetails);
   }, [id]);
 
-  console.log(movieDetails);
-
   const {
     poster_path,
     original_title,
@@ -28,9 +26,6 @@ function MoviePage() {
     revenue,
     budget,
   } = movieDetails;
-
-  console.log(production_companies);
-  const { logo_path, name, origin_country } = production_companies;
 
   const date = new Date(release_date);
   return (
@@ -53,15 +48,15 @@ function MoviePage() {
             <p className="text-xl font-bold">Overview</p>
             <p>{overview}</p>
           </div>
-          <div className="flex flex-col mt-5">
+          <div className="moviePageTitles">
             <p className="text-xl font-bold">Release Date</p>
             <p>{`${date}`}</p>
           </div>
-          <div className="flex flex-col mt-5">
+          <div className="moviePageTitles">
             <p className="text-xl font-bold">Popularity</p>
             <p>{popularity}</p>
           </div>
-          <div className="flex flex-col mt-5">
+          <div className="moviePageTitles">
             <p className="text-xl font-bold">Production Companies</p>
             <div className="flex flex-row">
               {production_companies &&
@@ -77,7 +72,7 @@ function MoviePage() {
                 )}
             </div>
           </div>
-          <div className="flex flex-col mt-5">
+          <div className="moviePageTitles">
             <p className="text-xl font-bold">Production Countries</p>
             <div className="flex flex-row">
               {production_countries &&
@@ -87,11 +82,11 @@ function MoviePage() {
             </div>
           </div>
           <div className="flex flex-row justify-around">
-            <div className="flex flex-col mt-5">
+            <div className="moviePageTitles">
               <p className="font-bold text-center">Budget</p>
               <p>{formatter.format(budget)}</p>
             </div>
-            <div className="flex flex-col mt-5">
+            <div className="moviePageTitles">
               <p className="font-bold text-center">Revenue</p>
               <p>{formatter.format(revenue)}</p>
             </div>
