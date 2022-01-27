@@ -3,8 +3,9 @@ import { useParams } from "react-router-dom";
 import { getMoviePage } from "../services/axios.js";
 import missing from "../photos/not_available.png";
 import { useNavigate } from "react-router-dom";
-import logo from "../photos/logo_not_available.jpeg";
 import { formatter } from "../utils";
+import ProductionCompany from "./ProductionCompany.js";
+import ProductionCountry from "./ProductionCountry.js";
 
 function MoviePage() {
   const [movieDetails, setMovieDetails] = useState("");
@@ -25,6 +26,10 @@ function MoviePage() {
     revenue,
     budget,
   } = movieDetails;
+
+  console.log(movieDetails);
+
+  // const { logo_path } = production_companies;
 
   const date = new Date(release_date);
   return (
@@ -60,27 +65,14 @@ function MoviePage() {
             <div className="flex flex-row">
               {production_companies &&
                 production_companies.map(
-                  ({ id, logo_path, name, origin_country }) => {
-                    return (
-                      <div key={id}>
-                        {logo_path !== null ? (
-                          <img
-                            className="w-46 h-24"
-                            src={`https://image.tmdb.org/t/p/w500/${logo_path}`}
-                            alt="company logo path"
-                          />
-                        ) : (
-                          <img
-                            className="w-46 h-24"
-                            src={logo}
-                            alt="company logo path"
-                          />
-                        )}
-                        <p>{name}</p>
-                        <p>{origin_country}</p>
-                      </div>
-                    );
-                  }
+                  ({ id, logo_path, name, origin_country }) => (
+                    <ProductionCompany
+                      key={id}
+                      logo_path={logo_path}
+                      name={name}
+                      origin_country={origin_country}
+                    />
+                  )
                 )}
             </div>
           </div>
@@ -89,9 +81,7 @@ function MoviePage() {
             <div className="flex flex-row">
               {production_countries &&
                 production_countries.map(({ name }, i) => (
-                  <div key={i} className="flex flex-row justify-between w-56">
-                    <p>{name}</p>
-                  </div>
+                  <ProductionCountry name={name} i={i} />
                 ))}
             </div>
           </div>
@@ -110,7 +100,7 @@ function MoviePage() {
       <a
         className="p-3 w-20 cursor-pointer text-center text-white bg-blue-500 rounded-md"
         onClick={() => navigate(-1)}
-        id="back"
+        data-cy="back"
       >
         Back
       </a>

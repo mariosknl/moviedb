@@ -14,12 +14,13 @@ describe("Landing to the homepage and searching for a movie", () => {
   });
   it("contains an input and two buttons", () => {
     cy.visit("/");
-    cy.get("input[type=submit]");
-    cy.get("button[type=button]");
+    cy.get("[data-cy=searchInput]");
+    cy.get("[data-cy=submitBtn]");
+    cy.get("[data-cy=resetBtn]");
   });
   it("searching for a movie that does not exist in the database", () => {
-    cy.get("input[name=searchInput").type("sdfnucenusadnucudsdy");
-    cy.get("input[type=submit]").click();
+    cy.get("[data-cy=searchInput]").type("sdfnucenusadnucudsdy");
+    cy.get("[data-cy=submitBtn]").click();
     cy.wait(1000);
     cy.on("window:alert", (str) => {
       expect(str).to.equal(

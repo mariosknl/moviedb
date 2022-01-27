@@ -14,17 +14,17 @@ describe("Landing to the homepage and searching for a movie", () => {
     cy.contains("Welcome to the MovieDb");
   });
   it("contains an input and two buttons", () => {
-    cy.get("input[name=searchInput");
-    cy.get("input[type=submit]");
-    cy.get("button[type=button]");
+    cy.get("[data-cy=searchInput]");
+    cy.get("[data-cy=submitBtn]");
+    cy.get("[data-cy=resetBtn]");
   });
   it("searching Lord of the Rings", () => {
-    cy.get("input[name=searchInput").type("Lord of the Rings");
-    cy.get("input[type=submit]").click();
+    cy.get("[data-cy=searchInput]").type("Lord of the Rings");
+    cy.get("[data-cy=submitBtn]").click();
   });
   it("making a request to moviedb API for Lord of the Rings and getting a response.status of 200", () => {
-    cy.get("input[name=searchInput").type("Lord of the Rings");
-    cy.get("input[type=submit]").click();
+    cy.get("[data-cy=searchInput]").type("Lord of the Rings");
+    cy.get("[data-cy=submitBtn]").click();
     cy.request(
       `https://api.themoviedb.org/3/search/movie?api_key=${Cypress.env(
         "api_key"
