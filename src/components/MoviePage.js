@@ -3,10 +3,14 @@ import { useParams } from "react-router-dom";
 import { getMoviePage } from "../services/axios.js";
 import missing from "../photos/not_available.png";
 import { useNavigate } from "react-router-dom";
-import logo from "../photos/logo_not_available.jpeg";
 import { formatter } from "../utils";
+<<<<<<< HEAD
 import ProductionCompanies from "./ProductionCompanies.js";
 import ProductionCountries from "./ProductionCountries.js";
+=======
+import ProductionCompany from "./ProductionCompany.js";
+import ProductionCountry from "./ProductionCountry.js";
+>>>>>>> testing_new2
 
 function MoviePage() {
   const [movieDetails, setMovieDetails] = useState("");
@@ -67,12 +71,14 @@ function MoviePage() {
             <div className="flex flex-row">
               {production_companies &&
                 production_companies.map(
-                  <ProductionCompanies
-                    id={id}
-                    logo_path={logo_path}
-                    name={name}
-                    origin_country={origin_country}
-                  />
+                  ({ id, logo_path, name, origin_country }) => (
+                    <ProductionCompany
+                      key={id}
+                      logo_path={logo_path}
+                      name={name}
+                      origin_country={origin_country}
+                    />
+                  )
                 )}
             </div>
           </div>
@@ -81,7 +87,7 @@ function MoviePage() {
             <div className="flex flex-row">
               {production_countries &&
                 production_countries.map(({ name }, i) => (
-                  <ProductionCountries name={name} i={i} />
+                  <ProductionCountry name={name} i={i} />
                 ))}
             </div>
           </div>
@@ -100,7 +106,7 @@ function MoviePage() {
       <a
         className="p-3 w-20 cursor-pointer text-center text-white bg-blue-500 rounded-md"
         onClick={() => navigate(-1)}
-        id="back"
+        data-cy="back"
       >
         Back
       </a>
